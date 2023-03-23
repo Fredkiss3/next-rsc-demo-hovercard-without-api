@@ -1,4 +1,5 @@
 "use server";
+import { fetchPokemon } from "./functions";
 
 export type Pokemon = {
   id: number;
@@ -7,8 +8,6 @@ export type Pokemon = {
     name: string;
   };
 };
-
-import { fetchPokemon } from "./functions";
 
 export async function loadPokemon(id: number) {
   const pokemon = await fetchPokemon(id).then((r) => r as Pokemon);
