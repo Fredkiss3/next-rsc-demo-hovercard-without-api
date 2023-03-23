@@ -1,7 +1,7 @@
 import { cache } from "react";
 
 export const fetchPokemon = cache(async (id: number) =>
-  wait(1000).then((_) =>
+  wait(process.env.NODE_ENV === "production" ? 0 : 1000).then((_) =>
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
       cache: "no-store",
     })
