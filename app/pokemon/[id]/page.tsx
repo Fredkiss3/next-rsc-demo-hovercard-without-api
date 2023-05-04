@@ -1,9 +1,10 @@
-import { PokemonCard } from "~/app/components/pokemon-card";
+import { loadPokemon } from "~/app/actions";
 
-export default function IssuePage({ params }: { params: { id: string } }) {
-  return (
-    <>
-      <PokemonCard id={Number(params.id)} />
-    </>
-  );
+export default async function IssuePage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const PokemonCard = await loadPokemon(Number(params.id));
+  return <>{PokemonCard}</>;
 }

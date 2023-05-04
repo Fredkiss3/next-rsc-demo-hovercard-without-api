@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import * as React from "react";
-import { PokemonCard, PokemonSkeleton } from "./pokemon-card";
+import { PokemonSkeleton } from "./pokemon-card";
+import { loadPokemon } from "../actions";
 
 export type PokemonItemClientProps = {
   id: number;
@@ -15,7 +16,6 @@ export function PokemonItemClient({ id, name }: PokemonItemClientProps) {
     <>
       <Link
         href={`/pokemon/${id}`}
-        onClick={() => {}}
         onMouseEnter={() => {
           setIsHovering(true);
         }}
@@ -27,10 +27,17 @@ export function PokemonItemClient({ id, name }: PokemonItemClientProps) {
         #{id} - {name}
         {isHovering && (
           <React.Suspense fallback={<PokemonSkeleton />}>
-            <PokemonCard id={id} inPlace />
+            <PokemonCard id={id} />
           </React.Suspense>
         )}
       </Link>
     </>
   );
+}
+
+const loadPokemonHover = React.cache(loadPokemon);
+
+export function PokemonCard({ id }: { id: number }) {
+  const Pokemon = React.use(loadPokemonHover(id, true));
+  return <>{Pokemon}</>;
 }

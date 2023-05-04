@@ -1,5 +1,5 @@
 import { cache, use } from "react";
-import { loadPokemon } from "../actions";
+import { Pokemon, loadPokemon } from "../actions";
 
 export function PokemonSkeleton() {
   return (
@@ -9,17 +9,15 @@ export function PokemonSkeleton() {
   );
 }
 
-const loadPokemonHover = cache(loadPokemon);
-
-export function PokemonCard({
-  id,
-  inPlace = false,
+export function PokemonCardShow({
+  pokemon,
+  inPlace,
 }: {
-  id: number;
-  inPlace?: boolean;
+  pokemon: Pokemon;
+  inPlace: boolean;
 }) {
-  const pokemon = use(loadPokemonHover(id));
   const pokemonSVGURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`;
+
   return (
     <dl
       className={`border rounded-md bg-gray-600 border-gray-200 font-normal ${
