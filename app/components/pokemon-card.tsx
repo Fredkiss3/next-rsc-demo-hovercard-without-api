@@ -1,5 +1,6 @@
-import { cache, use } from "react";
-import { Pokemon, loadPokemon } from "../actions";
+import * as React from "react";
+import type { Pokemon } from "../actions";
+import { PokeCardClient } from "./poke-cardclient";
 
 export function PokemonSkeleton() {
   return (
@@ -48,6 +49,8 @@ export function PokemonCardShow({
           height: `200px`,
         }}
       />
+
+      <PokeCardClient />
     </dl>
   );
 }

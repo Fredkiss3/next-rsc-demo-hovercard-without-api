@@ -2,7 +2,7 @@ import Image from "next/image";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-
+import { PokeCardClient } from "./components/poke-cardclient";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={inter.className}>
       <body suppressHydrationWarning className="dark">
+        {false && PokeCardClient}
         <main className="flex min-h-screen flex-col items-center justify-between p-24 h-screen">
           <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
             <Link
